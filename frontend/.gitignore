@@ -1,0 +1,14 @@
+﻿# File: frontend/.gitignore
+# Purpose: Tells Git which website files must never be uploaded (installed packages,
+#          build output and local secret settings).
+
+/node_modules
+/.next
+/out
+.env*.local
+next-env.d.ts
+*.tsbuildinfo
+*.log
+
+# File: frontend/.gitignore
+# END OF FILE

@@ -1,0 +1,399 @@
+﻿/* File: frontend/app/globals.css
+   Purpose: The look of the whole website: colours, header, buttons, cards and forms. */
+
+:root {
+  --bg: #f6f8fb;
+  --surface: #ffffff;
+  --text: #0f1b2d;
+  --muted: #5b6b82;
+  --primary: #0e7c86;
+  --primary-dark: #0a5d65;
+  --navy: #0b1f3a;
+  --border: #dde4ee;
+  --danger: #c0392b;
+  --radius: 14px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}
+
+a {
+  color: inherit;
+}
+
+.container {
+  width: min(1120px, 92%);
+  margin-inline: auto;
+}
+
+/* Header */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+}
+
+.brand {
+  font-weight: 800;
+  font-size: 1.25rem;
+  letter-spacing: -0.02em;
+  text-decoration: none;
+  color: var(--navy);
+}
+
+.brand span {
+  color: var(--primary);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav form {
+  margin: 0;
+}
+
+/* Buttons */
+.btn {
+  display: inline-block;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  padding: 10px 20px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  background: none;
+  color: var(--text);
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: #ffffff;
+}
+
+.btn-primary:hover {
+  background: var(--primary-dark);
+}
+
+.btn-primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn-ghost {
+  border-color: var(--border);
+  background: var(--surface);
+}
+
+.btn-ghost:hover {
+  border-color: var(--primary);
+}
+
+.btn-light {
+  background: #ffffff;
+  color: var(--navy);
+}
+
+/* Hero */
+.hero {
+  background: linear-gradient(135deg, var(--navy), #12335c 60%, var(--primary-dark));
+  color: #ffffff;
+  padding: 88px 0 96px;
+}
+
+.hero h1 {
+  font-size: clamp(2.1rem, 5vw, 3.4rem);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  margin: 0 0 16px;
+  max-width: 14em;
+}
+
+.hero p {
+  font-size: 1.15rem;
+  max-width: 38em;
+  color: #cfe0f2;
+  margin: 0 0 32px;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.hero .btn-ghost {
+  background: transparent;
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.45);
+}
+
+.hero .btn-ghost:hover {
+  border-color: #ffffff;
+}
+
+/* Sections and cards */
+.section {
+  padding: 64px 0;
+}
+
+.section h2 {
+  font-size: 1.8rem;
+  letter-spacing: -0.02em;
+  margin: 0 0 8px;
+}
+
+.section-intro {
+  color: var(--muted);
+  margin: 0 0 32px;
+  max-width: 40em;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+}
+
+.card h3 {
+  margin: 0 0 8px;
+  font-size: 1.1rem;
+}
+
+.card p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.step-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--primary);
+  color: #ffffff;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.skeleton {
+  min-height: 180px;
+  border-style: dashed;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.badge {
+  display: inline-block;
+  padding: 3px 12px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  background: #e3eefb;
+  color: #1c4f8a;
+}
+
+.badge-warn {
+  background: #fff1d6;
+  color: #8a5a00;
+}
+
+.badge-ok {
+  background: #dcf5e7;
+  color: #12683a;
+}
+
+/* Forms */
+.form-wrap {
+  display: flex;
+  justify-content: center;
+  padding: 56px 0;
+}
+
+.form-card {
+  width: min(460px, 94%);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 32px;
+}
+
+.form-card h1 {
+  margin: 0 0 4px;
+  font-size: 1.6rem;
+  letter-spacing: -0.02em;
+}
+
+.form-card .sub {
+  color: var(--muted);
+  margin: 0 0 24px;
+}
+
+.field {
+  margin-bottom: 16px;
+}
+
+.field label,
+.field .label {
+  display: block;
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: 6px;
+}
+
+.field input[type='text'],
+.field input[type='email'],
+.field input[type='password'] {
+  width: 100%;
+  padding: 11px 14px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  font-size: 1rem;
+  font-family: inherit;
+  background: #ffffff;
+}
+
+.field input:focus {
+  outline: 2px solid var(--primary);
+  outline-offset: 1px;
+}
+
+.choice-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+}
+
+.choice {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+}
+
+.hint {
+  color: var(--muted);
+  font-size: 0.85rem;
+  margin: 4px 0 0;
+}
+
+.field-error {
+  color: var(--danger);
+  font-size: 0.85rem;
+  margin: 4px 0 0;
+}
+
+.alert {
+  background: #fdecea;
+  color: var(--danger);
+  border: 1px solid #f5c6c1;
+  border-radius: 10px;
+  padding: 10px 14px;
+  margin-bottom: 16px;
+  font-size: 0.95rem;
+}
+
+.form-card .btn-primary {
+  width: 100%;
+}
+
+.form-footer {
+  text-align: center;
+  color: var(--muted);
+  margin: 20px 0 0;
+}
+
+.form-footer a {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+/* Account page */
+.account {
+  padding: 56px 0;
+}
+
+.account h1 {
+  margin: 0 0 4px;
+  letter-spacing: -0.02em;
+}
+
+.details {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 10px 24px;
+  margin: 20px 0 0;
+}
+
+.details dt {
+  color: var(--muted);
+}
+
+.details dd {
+  margin: 0;
+  font-weight: 500;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+/* Footer */
+.site-footer {
+  border-top: 1px solid var(--border);
+  padding: 24px 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+/* File: frontend/app/globals.css */
+/* END OF FILE */

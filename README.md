@@ -1,66 +1,56 @@
-# Car Rental Laravel Project
+﻿<!--
+File: README.md
+Purpose: Project overview for Via Nostra and instructions for running it locally.
+-->
 
-This is a car rental project developed for the graduation Project. It is built using the Laravel framework and provides a web application for managing car rental operations.
+# Via Nostra
 
-## Live website:
+A verified car-rental marketplace where companies and individuals offer their cars,
+cars are checked at a designated hub, and payments are held safely until the renter
+confirms the car was received.
 
-- check live website [here](https://carrental.veena.dev/)
+## Structure
 
-## Features
+- `backend/` - Fastify API (TypeScript, PostgreSQL)
+- `frontend/` - Next.js website (TypeScript)
 
--   User Registration and Authentication
--   Car Listing and Management
--   Rental Booking and Management
--   Admin Panel for managing cars, bookings, and users
+## Run it (two terminal tabs)
 
+Backend, on http://localhost:3001:
 
-## Interfaces:
+    cd backend
+    npm install
+    npm run dev
 
-- User
+Frontend, on http://localhost:3000:
 
-![Alt text](public/user_interface.gif)
+    cd frontend
+    npm install
+    npm run dev
 
-- Admin
+Copy `backend/.env.example` to `backend/.env` and `frontend/.env.example` to
+`frontend/.env.local`, and fill in the values, before starting.
 
-![Alt text](public/admin_interface.gif)
+## First staff member
 
+Sign up on the website, then give that account the super admin rank:
 
+    cd backend
+    npm run make-admin -- you@example.com
 
+## Backend features so far
 
-## Installation
+- Accounts: sign-up (individual or company), login, GET /auth/me
+- Staff ranks with permissions: support, verification officer, hub manager,
+  finance, content moderator, super admin
+- Admin: search users, change staff ranks, suspend or reactivate, audit log
+- Hubs: public list; staff create, edit and assign staff
+- Identity verification: upload documents, submit, staff review queue, approve
+  or reject (nobody can review their own account)
 
-1. Clone the repository: https://github.com/veena694
+All routes are under /api/v1.
 
-2. Navigate to the project directory: `cd CarRental`
-
-3. Install the dependencies using Composer: `composer install`
-
-4. Create a copy of the `.env.example` file and rename it to `.env`. Configure the database settings in the `.env` file.
-
-<!-- 5. Generate an application key: `php artisan key:generate` -->
-
-5. Run the database migrations: `php artisan migrate`
-
-7. Seed database cars table: `php artisan db:seed --class=CarSeeder`
-
-8. Seed the database users table with a Demo admin: `php artisan db:seed --class=adminDemo` (login as admin at '/admin')
-
-9. `npm install` && `npm run dev`
-
-10. Create the symbolic link: `php artisan storage:link`
-
-11. Start the development server: `php artisan serve`
-
-12. Visit `http://localhost:8000` in your browser to access the application.
-
-## Usage
-
--   Register a user account or login with existing credentials.
--   Explore the available cars and their details.
--   Make a booking by selecting a car and providing the required information.
--   Admin users can access the admin panel by visiting `http://localhost:8000/admin` and using their credentials.
--   Admins can manage cars, bookings, and users through the admin panel.
-
-## Contributing
-
-We welcome contributions to enhance the project! If you find any issues or have suggestions, please open an issue or submit a pull request.
+<!--
+File: README.md
+END OF FILE
+-->

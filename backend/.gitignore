@@ -1,0 +1,15 @@
+﻿# File: backend/.gitignore
+# Purpose: Tells Git which backend files must never be uploaded: installed packages,
+#          build output, secret settings in .env, and uploaded ID documents.
+
+/node_modules
+/dist
+/coverage
+/uploads
+.env
+.env.*
+!.env.example
+*.log
+
+# File: backend/.gitignore
+# END OF FILE

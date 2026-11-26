@@ -1,0 +1,18 @@
+﻿// File: backend/tsconfig.json
+// Purpose: TypeScript settings for the backend (modern ES modules, strict checking).
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "outDir": "dist",
+    "rootDir": "src",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": ["src"]
+}
+// File: backend/tsconfig.json
+// END OF FILE
