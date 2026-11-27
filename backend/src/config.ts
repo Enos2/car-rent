@@ -19,6 +19,10 @@ const schema = z.object({
   JWT_EXPIRES_IN_SECONDS: z.coerce.number().int().min(60).default(3600),
   UPLOAD_DIR: z.string().min(1).default('uploads'),
   MAX_UPLOAD_MB: z.coerce.number().int().min(1).max(20).default(5),
+  PAYMENT_PROVIDER: z.enum(['test']).default('test'),
+  COMMISSION_BPS_INDIVIDUAL: z.coerce.number().int().min(0).max(5000).default(2000),
+  COMMISSION_BPS_COMPANY: z.coerce.number().int().min(0).max(5000).default(1500),
+  BOOKING_HOLD_MINUTES: z.coerce.number().int().min(5).max(240).default(30),
 });
 
 const parsed = schema.safeParse(process.env);
@@ -33,6 +37,12 @@ if (!parsed.success) {
 
 const env = parsed.data;
 
+// The test payment provider pretends every payment works. It must never run in production.
+if (env.NODE_ENV === 'production' && env.PAYMENT_PROVIDER === 'test') {
+  console.error('PAYMENT_PROVIDER=test is not allowed when NODE_ENV=production.');
+  process.exit(1);
+}
+
 export const config = {
   nodeEnv: env.NODE_ENV,
   isProduction: env.NODE_ENV === 'production',
@@ -44,6 +54,10 @@ export const config = {
   jwtExpiresInSeconds: env.JWT_EXPIRES_IN_SECONDS,
   uploadDir: env.UPLOAD_DIR,
   maxUploadBytes: env.MAX_UPLOAD_MB * 1024 * 1024,
+  paymentProvider: env.PAYMENT_PROVIDER,
+  commissionBpsIndividual: env.COMMISSION_BPS_INDIVIDUAL,
+  commissionBpsCompany: env.COMMISSION_BPS_COMPANY,
+  bookingHoldMinutes: env.BOOKING_HOLD_MINUTES,
 };
 
 // File: backend/src/config.ts

@@ -51,9 +51,16 @@ Sign up on the website, then give that account the super admin rank:
 - Cars: verified owners list cars with documents and photos; staff approve the
   documents; the owner drops the car at a hub; the hub manager inspects it and it
   goes live; public search of live cars (the home-page feed)
+- Bookings: renters book live cars (no double-booking), pay, collect the car at the
+  hub, confirm receipt, and return it; cancellation refunds follow a fixed policy
+- Payments: money is held by the platform in a permanent ledger; the owner's share
+  is released only when the renter confirms receipt, minus the commission; the
+  deposit returns after the car is back; owners request payouts and finance staff
+  approve them. A test payment provider is used until a real one is connected.
 
-How a car goes live: draft, submitted, awaiting drop-off, live. A car can also be
-rejected (with a reason), paused by the owner, or suspended by staff.
+How a car goes live: draft, submitted, awaiting drop-off, live. How a booking
+goes: pending payment, confirmed, handed over, in progress, completed. It can also
+be cancelled or expire.
 
 All routes are under /api/v1.
 

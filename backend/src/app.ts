@@ -12,12 +12,15 @@ import Fastify from 'fastify';
 import type { FastifyError, FastifyInstance } from 'fastify';
 import { adminUserRoutes } from './admin/users.routes.js';
 import { authRoutes } from './auth/routes.js';
+import { adminBookingRoutes } from './bookings/admin.routes.js';
+import { bookingRoutes } from './bookings/routes.js';
 import { adminCarRoutes } from './cars/admin.routes.js';
 import { ownerCarRoutes } from './cars/owner.routes.js';
 import { publicCarRoutes } from './cars/public.routes.js';
 import { config } from './config.js';
 import { healthRoutes } from './health/routes.js';
 import { hubRoutes } from './hubs/routes.js';
+import { payoutRoutes } from './payouts/routes.js';
 import { verificationRoutes } from './verification/routes.js';
 
 export async function buildApp(): Promise<FastifyInstance> {
@@ -64,6 +67,9 @@ export async function buildApp(): Promise<FastifyInstance> {
   await app.register(ownerCarRoutes, { prefix: '/api/v1' });
   await app.register(publicCarRoutes, { prefix: '/api/v1' });
   await app.register(adminCarRoutes, { prefix: '/api/v1' });
+  await app.register(bookingRoutes, { prefix: '/api/v1' });
+  await app.register(adminBookingRoutes, { prefix: '/api/v1' });
+  await app.register(payoutRoutes, { prefix: '/api/v1' });
 
   return app;
 }

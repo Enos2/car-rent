@@ -41,7 +41,13 @@ export type Permission = (typeof PERMISSIONS)[number];
 const ROLE_PERMISSIONS: Record<UserRole, readonly Permission[]> = {
   renter: [],
   owner: [],
-  support_agent: ['users.read', 'bookings.read', 'reports.review', 'support.handle'],
+  support_agent: [
+    'users.read',
+    'bookings.read',
+    'bookings.manage',
+    'reports.review',
+    'support.handle',
+  ],
   verification_officer: ['users.read', 'verification.review'],
   hub_manager: ['hubs.manage', 'cars.inspect', 'cars.review', 'bookings.read'],
   finance_admin: ['finance.read', 'finance.manage', 'bookings.read'],
