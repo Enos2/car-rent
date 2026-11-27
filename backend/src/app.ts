@@ -1,4 +1,5 @@
-﻿// File: backend/src/app.ts
+// Project: Via Nostra
+// File: backend/src/app.ts
 // Purpose: Builds the API: security headers, CORS, request-rate limits, file
 //          uploads, login tokens, error handling and all routes under /api/v1.
 
@@ -11,6 +12,9 @@ import Fastify from 'fastify';
 import type { FastifyError, FastifyInstance } from 'fastify';
 import { adminUserRoutes } from './admin/users.routes.js';
 import { authRoutes } from './auth/routes.js';
+import { adminCarRoutes } from './cars/admin.routes.js';
+import { ownerCarRoutes } from './cars/owner.routes.js';
+import { publicCarRoutes } from './cars/public.routes.js';
 import { config } from './config.js';
 import { healthRoutes } from './health/routes.js';
 import { hubRoutes } from './hubs/routes.js';
@@ -57,6 +61,9 @@ export async function buildApp(): Promise<FastifyInstance> {
   await app.register(hubRoutes, { prefix: '/api/v1' });
   await app.register(verificationRoutes, { prefix: '/api/v1' });
   await app.register(adminUserRoutes, { prefix: '/api/v1' });
+  await app.register(ownerCarRoutes, { prefix: '/api/v1' });
+  await app.register(publicCarRoutes, { prefix: '/api/v1' });
+  await app.register(adminCarRoutes, { prefix: '/api/v1' });
 
   return app;
 }

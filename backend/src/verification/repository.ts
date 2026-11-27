@@ -1,4 +1,5 @@
-﻿// File: backend/src/verification/repository.ts
+// Project: Via Nostra
+// File: backend/src/verification/repository.ts
 // Purpose: All database queries for identity verification: requests, uploaded
 //          document records, the staff review queue and the approve or reject step.
 

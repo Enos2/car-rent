@@ -1,4 +1,5 @@
-﻿// File: backend/src/hubs/repository.ts
+// Project: Via Nostra
+// File: backend/src/hubs/repository.ts
 // Purpose: All database queries about hubs (drop-off and inspection locations)
 //          and the staff assigned to them.
 

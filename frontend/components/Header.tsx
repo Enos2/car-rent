@@ -1,4 +1,5 @@
-﻿// File: frontend/components/Header.tsx
+// Project: Via Nostra
+// File: frontend/components/Header.tsx
 // Purpose: The top bar shown on every page: the brand name and the links that
 //          change depending on whether the visitor is logged in.
 

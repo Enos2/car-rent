@@ -1,4 +1,5 @@
-﻿-- File: backend/migrations/001_create_users.sql
+-- Project: Via Nostra
+-- File: backend/migrations/001_create_users.sql
 -- Purpose: Creates the "users" table: login details, account type (individual or
 --          company), roles (renter, owner and the ranks of staff admins) and
 --          verification status.

@@ -1,4 +1,5 @@
-﻿// File: backend/src/auth/authenticate.ts
+// Project: Via Nostra
+// File: backend/src/auth/authenticate.ts
 // Purpose: The login check. Put requireAuth in front of any route that needs a
 //          logged-in user; it rejects requests without a valid token.
 

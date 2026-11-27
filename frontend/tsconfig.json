@@ -1,3 +1,4 @@
+// Project: Via Nostra
 // File: frontend/tsconfig.json
 // Purpose: TypeScript settings for the website (strict checking, "@/" import shortcut).
 {

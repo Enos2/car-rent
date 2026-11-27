@@ -1,4 +1,5 @@
-﻿// File: frontend/app/actions.ts
+// Project: Via Nostra
+// File: frontend/app/actions.ts
 // Purpose: The server-side logic behind the sign-up, login and logout forms. It talks
 //          to the backend and stores the login token in a secure cookie.
 

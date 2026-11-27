@@ -1,4 +1,5 @@
-﻿// File: backend/src/hubs/routes.ts
+// Project: Via Nostra
+// File: backend/src/hubs/routes.ts
 // Purpose: The web addresses for hubs. Anyone can list active hubs; hub managers
 //          create and edit hubs and assign staff to them. Changes are audited.
 

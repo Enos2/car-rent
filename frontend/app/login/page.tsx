@@ -1,4 +1,5 @@
-﻿// File: frontend/app/login/page.tsx
+// Project: Via Nostra
+// File: frontend/app/login/page.tsx
 // Purpose: The login page: email and password form that logs the person in through
 //          the backend and sends them to their account page.
 

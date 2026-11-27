@@ -1,4 +1,5 @@
-﻿// File: backend/src/health/routes.ts
+// Project: Via Nostra
+// File: backend/src/health/routes.ts
 // Purpose: Provides GET /health so we (and later our hosting service) can confirm
 //          that the API and its database are running.
 

@@ -1,4 +1,5 @@
-﻿// File: backend/src/scripts/make-admin.ts
+// Project: Via Nostra
+// File: backend/src/scripts/make-admin.ts
 // Purpose: One-time command that makes an existing account a super admin, so the
 //          first staff member can exist. Run: npm run make-admin -- you@example.com
 //          It needs access to the database, so only the project owner can run it.

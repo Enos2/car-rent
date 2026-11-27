@@ -1,4 +1,5 @@
-﻿// File: backend/src/auth/permissions.ts
+// Project: Via Nostra
+// File: backend/src/auth/permissions.ts
 // Purpose: Defines the staff ranks and exactly what each rank is allowed to do.
 //          Renters and owners have no staff permissions.
 

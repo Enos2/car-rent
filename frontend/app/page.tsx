@@ -1,4 +1,5 @@
-﻿// File: frontend/app/page.tsx
+// Project: Via Nostra
+// File: frontend/app/page.tsx
 // Purpose: The home page: what Via Nostra is, how it works, why it is trustworthy,
 //          and the place where cars from verified owners will appear.
 

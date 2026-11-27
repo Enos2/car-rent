@@ -1,4 +1,5 @@
-﻿// File: backend/tsconfig.json
+// Project: Via Nostra
+// File: backend/tsconfig.json
 // Purpose: TypeScript settings for the backend (modern ES modules, strict checking).
 {
   "compilerOptions": {

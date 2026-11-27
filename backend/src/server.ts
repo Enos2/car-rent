@@ -1,4 +1,5 @@
-﻿// File: backend/src/server.ts
+// Project: Via Nostra
+// File: backend/src/server.ts
 // Purpose: Starts the Via Nostra API: applies database migrations, then listens
 //          for requests. Shuts down cleanly when stopped.
 

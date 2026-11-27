@@ -1,4 +1,5 @@
-﻿// File: backend/src/users/repository.ts
+// Project: Via Nostra
+// File: backend/src/users/repository.ts
 // Purpose: All database queries about user accounts: create, find, search with
 //          filters, change roles, suspend or reactivate, and count by role.
 

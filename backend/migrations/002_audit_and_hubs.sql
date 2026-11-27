@@ -1,4 +1,5 @@
-﻿-- File: backend/migrations/002_audit_and_hubs.sql
+-- Project: Via Nostra
+-- File: backend/migrations/002_audit_and_hubs.sql
 -- Purpose: Creates the audit log (a permanent record of staff actions), the hubs
 --          (drop-off and inspection locations) and the link between hubs and staff.
 

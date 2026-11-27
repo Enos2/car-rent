@@ -1,4 +1,5 @@
-﻿// File: frontend/app/register/page.tsx
+// Project: Via Nostra
+// File: frontend/app/register/page.tsx
 // Purpose: The sign-up page: a person chooses individual or company, whether they
 //          want to rent, list cars or both, and creates their account.
 

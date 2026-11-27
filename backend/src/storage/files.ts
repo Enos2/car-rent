@@ -1,4 +1,5 @@
-﻿// File: backend/src/storage/files.ts
+// Project: Via Nostra
+// File: backend/src/storage/files.ts
 // Purpose: Saves and reads uploaded files on the computer's disk, inside a private
 //          folder, under random names. Also checks the real type of a file by its
 //          first bytes. Later this can be swapped for cloud storage.

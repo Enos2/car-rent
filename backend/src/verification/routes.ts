@@ -1,4 +1,5 @@
-﻿// File: backend/src/verification/routes.ts
+// Project: Via Nostra
+// File: backend/src/verification/routes.ts
 // Purpose: The web addresses for identity verification. People upload documents and
 //          submit them for review; verification officers see the queue, open the
 //          documents and approve or reject. Everything staff do is audited.

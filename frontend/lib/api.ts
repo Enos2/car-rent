@@ -1,4 +1,5 @@
-﻿// File: frontend/lib/api.ts
+// Project: Via Nostra
+// File: frontend/lib/api.ts
 // Purpose: Talks to the Via Nostra backend from the server side of the website and
 //          turns every answer into a simple "ok" or "error" result.
 

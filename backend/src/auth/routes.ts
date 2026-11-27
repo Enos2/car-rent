@@ -1,4 +1,5 @@
-﻿// File: backend/src/auth/routes.ts
+// Project: Via Nostra
+// File: backend/src/auth/routes.ts
 // Purpose: The web addresses for signing up, logging in and viewing your own
 //          account: POST /auth/register, POST /auth/login and GET /auth/me.
 

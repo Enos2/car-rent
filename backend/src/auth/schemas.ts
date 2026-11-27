@@ -1,4 +1,5 @@
-﻿// File: backend/src/auth/schemas.ts
+// Project: Via Nostra
+// File: backend/src/auth/schemas.ts
 // Purpose: Describes and validates what a person must send to sign up or log in.
 //          Staff roles can never be requested at sign-up.
 

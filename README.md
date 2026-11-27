@@ -1,4 +1,5 @@
 ﻿<!--
+Project: Via Nostra
 File: README.md
 Purpose: Project overview for Via Nostra and instructions for running it locally.
 -->
@@ -47,6 +48,12 @@ Sign up on the website, then give that account the super admin rank:
 - Hubs: public list; staff create, edit and assign staff
 - Identity verification: upload documents, submit, staff review queue, approve
   or reject (nobody can review their own account)
+- Cars: verified owners list cars with documents and photos; staff approve the
+  documents; the owner drops the car at a hub; the hub manager inspects it and it
+  goes live; public search of live cars (the home-page feed)
+
+How a car goes live: draft, submitted, awaiting drop-off, live. A car can also be
+rejected (with a reason), paused by the owner, or suspended by staff.
 
 All routes are under /api/v1.
 

@@ -1,4 +1,5 @@
-﻿// File: backend/src/audit/audit.ts
+// Project: Via Nostra
+// File: backend/src/audit/audit.ts
 // Purpose: Writes entries to the audit log, the permanent record of who did what.
 //          Every important staff action calls recordAudit.
 

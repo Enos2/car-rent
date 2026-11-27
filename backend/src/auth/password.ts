@@ -1,4 +1,5 @@
-﻿// File: backend/src/auth/password.ts
+// Project: Via Nostra
+// File: backend/src/auth/password.ts
 // Purpose: Hashes and checks passwords with scrypt, a strong password-hashing
 //          method built into Node.js. Real passwords are never stored.
 

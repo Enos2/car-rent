@@ -1,4 +1,5 @@
-﻿// File: backend/src/http.ts
+// Project: Via Nostra
+// File: backend/src/http.ts
 // Purpose: Small helpers shared by the API routes: standard error replies, a check
 //          for "this value already exists" database errors, and shared validation
 //          rules for ids and paging.

@@ -1,4 +1,5 @@
-﻿// File: frontend/app/layout.tsx
+// Project: Via Nostra
+// File: frontend/app/layout.tsx
 // Purpose: The frame around every page: page title settings, the header at the top
 //          and the footer at the bottom.
 

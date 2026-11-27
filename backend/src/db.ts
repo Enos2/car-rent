@@ -1,4 +1,5 @@
-﻿// File: backend/src/db.ts
+// Project: Via Nostra
+// File: backend/src/db.ts
 // Purpose: Connects to the PostgreSQL database and applies the table definitions
 //          in the migrations folder (in order, once each) when the API starts.
 

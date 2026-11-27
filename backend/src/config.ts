@@ -1,4 +1,5 @@
-﻿// File: backend/src/config.ts
+// Project: Via Nostra
+// File: backend/src/config.ts
 // Purpose: Reads the settings from the .env file, checks that they are valid and
 //          shares them with the rest of the API. A wrong or missing setting stops
 //          the server at startup with a clear message.

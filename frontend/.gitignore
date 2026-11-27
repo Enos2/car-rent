@@ -1,4 +1,5 @@
-﻿# File: frontend/.gitignore
+# Project: Via Nostra
+# File: frontend/.gitignore
 # Purpose: Tells Git which website files must never be uploaded (installed packages,
 #          build output and local secret settings).
 

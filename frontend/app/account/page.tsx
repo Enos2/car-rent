@@ -1,4 +1,5 @@
-﻿// File: frontend/app/account/page.tsx
+// Project: Via Nostra
+// File: frontend/app/account/page.tsx
 // Purpose: The logged-in person's account page: their details, roles and
 //          verification status. Visitors who are not logged in are sent to login.
 

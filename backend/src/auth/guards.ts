@@ -1,4 +1,5 @@
-﻿// File: backend/src/auth/guards.ts
+// Project: Via Nostra
+// File: backend/src/auth/guards.ts
 // Purpose: The login and permission checks for routes. requireUser needs any
 //          logged-in active user; requirePermission also needs a staff permission.
 //          The user is read fresh from the database, so role changes apply at once.

@@ -1,4 +1,5 @@
-﻿-- File: backend/migrations/003_verification.sql
+-- Project: Via Nostra
+-- File: backend/migrations/003_verification.sql
 -- Purpose: Creates the tables for identity verification: a verification request
 --          per person and the documents (ID, licence, selfie, company papers) in it.
 

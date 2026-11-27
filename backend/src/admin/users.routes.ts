@@ -1,4 +1,5 @@
-﻿// File: backend/src/admin/users.routes.ts
+// Project: Via Nostra
+// File: backend/src/admin/users.routes.ts
 // Purpose: Staff tools for managing accounts: search users, give or remove staff
 //          ranks (super admin only), suspend or reactivate accounts, and read the
 //          audit log. Every change is recorded in the audit log.

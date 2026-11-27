@@ -1,4 +1,5 @@
-﻿// File: frontend/lib/session.ts
+// Project: Via Nostra
+// File: frontend/lib/session.ts
 // Purpose: Keeps the login token in a secure cookie that browser scripts cannot
 //          read, and looks up the logged-in user.
 

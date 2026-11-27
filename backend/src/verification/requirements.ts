@@ -1,4 +1,5 @@
-﻿// File: backend/src/verification/requirements.ts
+// Project: Via Nostra
+// File: backend/src/verification/requirements.ts
 // Purpose: Defines which documents each kind of person must upload to be verified
 //          (renter, owner or company) and checks which ones are still missing.
 
