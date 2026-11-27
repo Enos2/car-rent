@@ -1,0 +1,337 @@
+/* Project: Via Nostra */
+/* File: frontend/app/cars.css
+   Purpose: The look of the car pages: the car cards and grid, search filters, the
+   car detail page, the booking box, booking lists and the booking timeline. */
+
+.section-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.section-head h2,
+.section-head h1 {
+  margin: 0;
+}
+
+.page {
+  padding: 40px 0 64px;
+}
+
+.car-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.car-card {
+  display: block;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  transition: box-shadow 0.15s, transform 0.15s;
+}
+
+.car-card:hover {
+  box-shadow: 0 8px 24px rgba(11, 31, 58, 0.12);
+  transform: translateY(-2px);
+}
+
+.car-photo {
+  aspect-ratio: 16 / 10;
+  background: linear-gradient(135deg, #dfe8f3, #eef3f9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+}
+
+.car-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.car-body {
+  padding: 16px;
+}
+
+.car-body h3 {
+  margin: 0 0 4px;
+  font-size: 1.05rem;
+}
+
+.car-meta,
+.car-owner {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.car-price {
+  margin: 10px 0 6px;
+}
+
+.empty {
+  background: var(--surface);
+  border: 1px dashed var(--border);
+  border-radius: var(--radius);
+  padding: 40px 24px;
+  text-align: center;
+  color: var(--muted);
+}
+
+.empty p {
+  margin: 0 0 12px;
+}
+
+/* Search filters */
+.filters {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 12px;
+  align-items: end;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  margin-bottom: 24px;
+}
+
+.filters label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.filters input,
+.filters select {
+  width: 100%;
+  padding: 9px 12px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  font: inherit;
+  background: #ffffff;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+  margin-top: 28px;
+  color: var(--muted);
+}
+
+/* Car detail */
+.detail-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.7fr) minmax(280px, 1fr);
+  gap: 32px;
+  align-items: start;
+}
+
+@media (max-width: 860px) {
+  .detail-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.gallery-main {
+  aspect-ratio: 16 / 10;
+  background: linear-gradient(135deg, #dfe8f3, #eef3f9);
+  border-radius: var(--radius);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+}
+
+.gallery-main img,
+.gallery-thumbs img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.gallery-thumbs {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.gallery-thumbs div {
+  aspect-ratio: 16 / 10;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 12px 0 20px;
+}
+
+.booking-box {
+  position: sticky;
+  top: 84px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+}
+
+.booking-box h2 {
+  margin: 0 0 4px;
+  font-size: 1.4rem;
+}
+
+.booking-box .btn-primary {
+  width: 100%;
+}
+
+.estimate {
+  background: #f1f6fb;
+  border-radius: 10px;
+  padding: 12px 14px;
+  margin: 4px 0 16px;
+  font-size: 0.95rem;
+}
+
+.estimate div {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.notice {
+  background: #e6f4ee;
+  border: 1px solid #bfe3d0;
+  color: #12683a;
+  border-radius: 10px;
+  padding: 10px 14px;
+  margin-bottom: 16px;
+}
+
+.blocked-list {
+  margin: 8px 0 0;
+  padding-left: 18px;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.badge-bad {
+  background: #fdecea;
+  color: var(--danger);
+}
+
+/* Booking lists and booking page */
+.row-list {
+  display: grid;
+  gap: 12px;
+}
+
+.row-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px 20px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.row-card:hover {
+  border-color: var(--primary);
+}
+
+.row-card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.timeline {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.timeline li {
+  display: flex;
+  gap: 12px;
+  padding: 6px 0;
+  color: var(--muted);
+}
+
+.timeline li.done {
+  color: var(--text);
+}
+
+.timeline .dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid var(--border);
+  margin-top: 6px;
+  flex: none;
+}
+
+.timeline li.done .dot {
+  background: var(--primary);
+  border-color: var(--primary);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.actions form {
+  margin: 0;
+}
+
+.cancel-box {
+  margin-top: 16px;
+  color: var(--muted);
+}
+
+.cancel-box summary {
+  cursor: pointer;
+}
+
+.cancel-box form {
+  margin-top: 10px;
+  display: grid;
+  gap: 10px;
+  max-width: 420px;
+}
+
+.cancel-box input {
+  padding: 9px 12px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  font: inherit;
+}
+
+/* File: frontend/app/cars.css */
+/* END OF FILE */

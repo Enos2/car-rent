@@ -21,10 +21,11 @@ export function currentAccount(request: FastifyRequest): User {
   return account;
 }
 
+// Returns a reply when the request was refused, and undefined when it may continue.
 export async function requireUser(
   request: FastifyRequest,
   reply: FastifyReply,
-): Promise<FastifyReply | void> {
+): Promise<FastifyReply | undefined> {
   try {
     await request.jwtVerify();
   } catch {
@@ -40,10 +41,14 @@ export async function requireUser(
       .send({ error: 'Unauthorized', message: 'Account not found or disabled' });
   }
   accounts.set(request, user);
+  return undefined;
 }
 
 export function requirePermission(permission: Permission) {
-  return async (request: FastifyRequest, reply: FastifyReply): Promise<FastifyReply | void> => {
+  return async (
+    request: FastifyRequest,
+    reply: FastifyReply,
+  ): Promise<FastifyReply | undefined> => {
     const denied = await requireUser(request, reply);
     if (denied) {
       return denied;
@@ -53,6 +58,7 @@ export function requirePermission(permission: Permission) {
         .code(403)
         .send({ error: 'Forbidden', message: 'You do not have permission to do this' });
     }
+    return undefined;
   };
 }
 

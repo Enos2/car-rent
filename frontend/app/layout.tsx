@@ -1,12 +1,13 @@
 // Project: Via Nostra
 // File: frontend/app/layout.tsx
-// Purpose: The frame around every page: page title settings, the header at the top
-//          and the footer at the bottom.
+// Purpose: The frame around every page: page title settings, the styles, the header
+//          at the top and the footer at the bottom.
 
 import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
 import Header from '@/components/Header';
 import './globals.css';
+import './cars.css';
 
 export const metadata: Metadata = {
   title: {

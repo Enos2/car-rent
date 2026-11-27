@@ -8,7 +8,8 @@
     "build": "tsc",
     "start": "node dist/server.js",
     "typecheck": "tsc --noEmit",
-    "make-admin": "tsx src/scripts/make-admin.ts"
+    "make-admin": "tsx src/scripts/make-admin.ts",
+    "seed": "tsx src/scripts/seed-demo.ts"
   },
   "keywords": [],
   "type": "module",

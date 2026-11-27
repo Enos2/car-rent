@@ -1,9 +1,12 @@
 // Project: Via Nostra
 // File: frontend/app/page.tsx
-// Purpose: The home page: what Via Nostra is, how it works, why it is trustworthy,
-//          and the place where cars from verified owners will appear.
+// Purpose: The home page: what Via Nostra is, the feed of the newest live cars from
+//          verified owners, and how the platform keeps renting safe.
 
 import Link from 'next/link';
+import CarCard from '@/components/CarCard';
+import { apiRequest } from '@/lib/api';
+import type { CarSearchResponse } from '@/lib/types';
 
 const steps = [
   {
@@ -20,7 +23,10 @@ const steps = [
   },
 ];
 
-export default function HomePage() {
+export default async function HomePage() {
+  const result = await apiRequest<CarSearchResponse>('/cars?limit=6&sort=newest');
+  const cars = result.ok ? result.data.items : [];
+
   return (
     <>
       <section className="hero">
@@ -31,13 +37,40 @@ export default function HomePage() {
             our hubs and payments are protected from the first booking.
           </p>
           <div className="hero-actions">
-            <Link href="/register" className="btn btn-light">
+            <Link href="/cars" className="btn btn-light">
+              Browse cars
+            </Link>
+            <Link href="/register" className="btn btn-ghost">
               Create an account
             </Link>
-            <Link href="/login" className="btn btn-ghost">
-              Log in
+          </div>
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="container">
+          <div className="section-head">
+            <h2>Latest cars</h2>
+            <Link href="/cars" className="btn btn-ghost">
+              See all cars
             </Link>
           </div>
+          {!result.ok ? (
+            <div className="alert">{result.error.message}</div>
+          ) : cars.length === 0 ? (
+            <div className="empty">
+              <p>No cars are live yet. Be one of the first owners on Via Nostra.</p>
+              <Link href="/register" className="btn btn-primary">
+                List your car
+              </Link>
+            </div>
+          ) : (
+            <div className="car-grid">
+              {cars.map((car) => (
+                <CarCard key={car.id} car={car} />
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
@@ -51,25 +84,6 @@ export default function HomePage() {
                 <div className="step-number">{index + 1}</div>
                 <h3>{step.title}</h3>
                 <p>{step.text}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="section">
-        <div className="container">
-          <h2>Latest cars</h2>
-          <p className="section-intro">
-            Cars from verified owners will appear here, newest first.{' '}
-            <span className="badge badge-warn">Coming soon</span>
-          </p>
-          <div className="grid">
-            {[1, 2, 3].map((slot) => (
-              <div className="card skeleton" key={slot}>
-                <span className="badge">Verified owner</span>
-                <h3>Your car could be here</h3>
-                <p>Sign up as an owner to be ready when listings open.</p>
               </div>
             ))}
           </div>
