@@ -2,7 +2,7 @@
 // File: backend/src/bookings/routes.ts
 // Purpose: The web addresses renters and owners use for bookings: see a car's blocked
 //          dates, book a car, pay, confirm that the car was received, cancel, and
-//          list or open their bookings.
+//          list or open their bookings. Renters never see the commission amounts.
 
 import type { FastifyInstance, FastifyReply } from 'fastify';
 import { currentAccount, requireUser } from '../auth/guards.js';
@@ -46,7 +46,15 @@ function createFailure(
   }
 }
 
-// What an owner may see about a booking: the renter's first name only, no email.
+// What a renter may see: everything except Via Nostra's commission.
+function renterView<
+  T extends { commissionBps: number; commissionMinor: number; ownerShareMinor: number },
+>(booking: T) {
+  const { commissionBps, commissionMinor, ownerShareMinor, ...rest } = booking;
+  return rest;
+}
+
+// What an owner may see: the renter's first name only, no email.
 function ownerView(item: BookingListItem) {
   const { renterName, renterEmail, ...rest } = item;
   return { ...rest, renterFirstName: renterName.split(' ')[0] ?? '' };
@@ -102,7 +110,7 @@ export async function bookingRoutes(app: FastifyInstance): Promise<void> {
         return createFailure(reply, outcome);
       }
       return reply.code(201).send({
-        booking: outcome.booking,
+        booking: renterView(outcome.booking),
         payment: {
           provider: getPaymentProvider().name,
           amountDueMinor: outcome.booking.subtotalMinor + outcome.booking.depositMinor,
@@ -122,7 +130,12 @@ export async function bookingRoutes(app: FastifyInstance): Promise<void> {
       renterId: currentAccount(request).id,
       ...query.data,
     });
-    return { items, total, limit: query.data.limit, offset: query.data.offset };
+    return {
+      items: items.map(renterView),
+      total,
+      limit: query.data.limit,
+      offset: query.data.offset,
+    };
   });
 
   app.get('/bookings/owner', { preHandler: requireUser }, async (request, reply) => {
@@ -149,7 +162,7 @@ export async function bookingRoutes(app: FastifyInstance): Promise<void> {
     }
     const hub = await getHub(item.hubId);
     return {
-      booking: item.renterId === account.id ? item : ownerView(item),
+      booking: item.renterId === account.id ? renterView(item) : ownerView(item),
       hub: hub && {
         id: hub.id,
         name: hub.name,
@@ -182,7 +195,7 @@ export async function bookingRoutes(app: FastifyInstance): Promise<void> {
           ? sendError(reply, 409, 'Conflict', 'The payment window has expired. Please book again')
           : sendError(reply, 409, 'Conflict', 'This booking cannot be paid');
       }
-      return { booking: outcome.booking };
+      return { booking: renterView(outcome.booking) };
     },
   );
 
@@ -201,7 +214,7 @@ export async function bookingRoutes(app: FastifyInstance): Promise<void> {
     if (!outcome.ok) {
       return sendError(reply, 409, 'Conflict', 'The car has not been handed over to you yet');
     }
-    return { booking: outcome.booking };
+    return { booking: renterView(outcome.booking) };
   });
 
   app.post('/bookings/:id/cancel', { preHandler: requireUser }, async (request, reply) => {
@@ -219,9 +232,10 @@ export async function bookingRoutes(app: FastifyInstance): Promise<void> {
       return sendError(reply, 404, 'Not Found', 'Booking not found');
     }
 
+    const isRenter = item.renterId === account.id;
     const outcome = await cancelBooking({
       bookingId: item.id,
-      by: item.renterId === account.id ? 'renter' : 'owner',
+      by: isRenter ? 'renter' : 'owner',
       actorId: account.id,
       reason: body.data.reason,
       provider: getPaymentProvider(),
@@ -237,7 +251,10 @@ export async function bookingRoutes(app: FastifyInstance): Promise<void> {
         'This booking can no longer be cancelled here. Contact support',
       );
     }
-    return { booking: outcome.booking, refundMinor: outcome.refundMinor ?? 0 };
+    return {
+      booking: isRenter ? renterView(outcome.booking) : outcome.booking,
+      refundMinor: outcome.refundMinor ?? 0,
+    };
   });
 }
 

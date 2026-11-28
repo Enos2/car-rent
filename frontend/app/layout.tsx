@@ -8,6 +8,7 @@ import type { ReactNode } from 'react';
 import Header from '@/components/Header';
 import './globals.css';
 import './cars.css';
+import './dashboard.css';
 
 export const metadata: Metadata = {
   title: {

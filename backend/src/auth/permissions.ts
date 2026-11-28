@@ -1,7 +1,8 @@
 // Project: Via Nostra
 // File: backend/src/auth/permissions.ts
 // Purpose: Defines the staff ranks and exactly what each rank is allowed to do.
-//          Renters and owners have no staff permissions.
+//          Renters and owners have no staff permissions. permissionsFor lists
+//          everything a set of roles may do, which the website uses for its menus.
 
 import type { UserRole } from '../users/repository.js';
 
@@ -57,6 +58,10 @@ const ROLE_PERMISSIONS: Record<UserRole, readonly Permission[]> = {
 
 export function hasPermission(roles: readonly UserRole[], permission: Permission): boolean {
   return roles.some((role) => ROLE_PERMISSIONS[role].includes(permission));
+}
+
+export function permissionsFor(roles: readonly UserRole[]): Permission[] {
+  return PERMISSIONS.filter((permission) => hasPermission(roles, permission));
 }
 
 export function isStaff(roles: readonly UserRole[]): boolean {

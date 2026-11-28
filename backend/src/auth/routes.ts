@@ -1,19 +1,17 @@
 // Project: Via Nostra
 // File: backend/src/auth/routes.ts
 // Purpose: The web addresses for signing up, logging in and viewing your own
-//          account: POST /auth/register, POST /auth/login and GET /auth/me.
+//          account: POST /auth/register, POST /auth/login and GET /auth/me. The
+//          account details include the person's permissions for the website menus.
 
 import type { FastifyInstance } from 'fastify';
 import { config } from '../config.js';
 import { isUniqueViolation, sendValidationError } from '../http.js';
-import {
-  createUser,
-  findUserById,
-  findUserWithPasswordByEmail,
-} from '../users/repository.js';
+import { createUser, findUserWithPasswordByEmail } from '../users/repository.js';
 import type { User } from '../users/repository.js';
-import { requireAuth } from './authenticate.js';
+import { currentAccount, requireUser } from './guards.js';
 import { hashPassword, verifyPassword } from './password.js';
+import { permissionsFor } from './permissions.js';
 import { loginSchema, registerSchema } from './schemas.js';
 
 // Used so a login for an unknown email takes as long as a real one.
@@ -28,6 +26,7 @@ function toPublicUser(user: User) {
     accountType: user.accountType,
     companyName: user.companyName,
     roles: user.roles,
+    permissions: permissionsFor(user.roles),
     verificationStatus: user.verificationStatus,
     createdAt: user.createdAt,
   };
@@ -99,15 +98,9 @@ export async function authRoutes(app: FastifyInstance): Promise<void> {
     },
   );
 
-  app.get('/auth/me', { preHandler: requireAuth }, async (request, reply) => {
-    const user = await findUserById(request.user.sub);
-    if (!user || !user.isActive) {
-      return reply
-        .code(401)
-        .send({ error: 'Unauthorized', message: 'Account not found or disabled' });
-    }
-    return { user: toPublicUser(user) };
-  });
+  app.get('/auth/me', { preHandler: requireUser }, async (request) => ({
+    user: toPublicUser(currentAccount(request)),
+  }));
 }
 
 // File: backend/src/auth/routes.ts

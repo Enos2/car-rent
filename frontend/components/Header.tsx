@@ -1,14 +1,17 @@
 // Project: Via Nostra
 // File: frontend/components/Header.tsx
 // Purpose: The top bar shown on every page: the brand name, the main links and the
-//          buttons that change depending on whether the visitor is logged in.
+//          buttons that change with who is logged in (renter, owner or staff).
 
 import Link from 'next/link';
 import { logoutAction } from '@/app/actions';
-import { getToken } from '@/lib/session';
+import { getCurrentUser } from '@/lib/session';
 
 export default async function Header() {
-  const signedIn = (await getToken()) !== null;
+  const user = await getCurrentUser();
+  const isOwner = user?.roles.includes('owner') ?? false;
+  const isRenter = user?.roles.includes('renter') ?? false;
+  const isStaff = (user?.permissions.length ?? 0) > 0;
 
   return (
     <header className="site-header">
@@ -20,11 +23,23 @@ export default async function Header() {
           <Link href="/cars" className="btn">
             Cars
           </Link>
-          {signedIn ? (
+          {user ? (
             <>
-              <Link href="/bookings" className="btn">
-                My bookings
-              </Link>
+              {isRenter ? (
+                <Link href="/bookings" className="btn">
+                  My bookings
+                </Link>
+              ) : null}
+              {isOwner ? (
+                <Link href="/owner" className="btn">
+                  Owner
+                </Link>
+              ) : null}
+              {isStaff ? (
+                <Link href="/admin" className="btn">
+                  Staff
+                </Link>
+              ) : null}
               <Link href="/account" className="btn btn-ghost">
                 My account
               </Link>

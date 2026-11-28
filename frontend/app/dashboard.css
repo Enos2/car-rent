@@ -1,0 +1,329 @@
+/* Project: Via Nostra */
+/* File: frontend/app/dashboard.css
+   Purpose: The look of the owner pages and the staff console: tables, tabs, stat
+   cards, forms, file rows, photo grids and small buttons. */
+
+.nav {
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+/* Form controls beyond text boxes */
+.field input[type='number'],
+.field input[type='date'],
+.field input[type='file'],
+.field select,
+.field textarea {
+  width: 100%;
+  padding: 11px 14px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  font: inherit;
+  background: #ffffff;
+}
+
+.field input[type='file'] {
+  padding: 9px 12px;
+}
+
+.field textarea {
+  resize: vertical;
+}
+
+.field input:disabled,
+.field select:disabled,
+.field textarea:disabled {
+  background: #eef2f7;
+  color: var(--muted);
+}
+
+.form-panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  margin-bottom: 20px;
+}
+
+.form-panel h2,
+.form-panel h3 {
+  margin-top: 0;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0 16px;
+}
+
+.form-grid .wide {
+  grid-column: 1 / -1;
+}
+
+.inline-form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+}
+
+.inline-form input[type='text'],
+.inline-form input[type='number'],
+.inline-form input[type='date'],
+.inline-form input[type='file'],
+.inline-form select {
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  font: inherit;
+  background: #ffffff;
+  max-width: 100%;
+}
+
+/* Buttons */
+.btn-small {
+  padding: 6px 14px;
+  font-size: 0.85rem;
+}
+
+.btn-danger {
+  background: #ffffff;
+  color: var(--danger);
+  border-color: #f0c4be;
+}
+
+.btn-danger:hover {
+  border-color: var(--danger);
+}
+
+.btn-ok {
+  background: #12683a;
+  color: #ffffff;
+}
+
+/* Layout helpers */
+.subnav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 24px;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 12px;
+}
+
+.subnav a {
+  padding: 7px 14px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.subnav a:hover {
+  background: #e9eef5;
+  color: var(--text);
+}
+
+.subnav a.active {
+  background: var(--navy);
+  color: #ffffff;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.stat {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px 20px;
+  text-decoration: none;
+  color: inherit;
+}
+
+a.stat:hover {
+  border-color: var(--primary);
+}
+
+.stat .value {
+  font-size: 1.8rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.stat .label {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.callout {
+  background: #fff8e6;
+  border: 1px solid #f3dfa5;
+  color: #6b4a00;
+  border-radius: 10px;
+  padding: 12px 16px;
+  margin-bottom: 20px;
+}
+
+.callout a {
+  font-weight: 600;
+}
+
+/* Tables */
+.table-wrap {
+  overflow-x: auto;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin-bottom: 24px;
+}
+
+table.data {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.93rem;
+}
+
+table.data th,
+table.data td {
+  text-align: left;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: middle;
+}
+
+table.data th {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  background: #f7f9fc;
+}
+
+table.data tr:last-child td {
+  border-bottom: none;
+}
+
+table.data .num {
+  text-align: right;
+  white-space: nowrap;
+}
+
+.thumb {
+  width: 64px;
+  height: 42px;
+  border-radius: 8px;
+  object-fit: cover;
+  background: #dfe8f3;
+  display: block;
+}
+
+/* Documents and photos */
+.doc-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.doc-row:last-child {
+  border-bottom: none;
+}
+
+.doc-row p {
+  margin: 0;
+}
+
+.checklist {
+  list-style: none;
+  margin: 0 0 16px;
+  padding: 0;
+}
+
+.checklist li {
+  display: flex;
+  gap: 10px;
+  padding: 4px 0;
+}
+
+.checklist .tick {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid var(--border);
+  flex: none;
+  margin-top: 3px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  color: #ffffff;
+}
+
+.checklist li.done .tick {
+  background: #12683a;
+  border-color: #12683a;
+}
+
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.photo-tile {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.photo-tile img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  display: block;
+}
+
+.photo-tile form {
+  padding: 8px;
+  margin: 0;
+}
+
+.photo-tile .btn {
+  width: 100%;
+}
+
+.kv {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 6px 20px;
+  margin: 0;
+}
+
+.kv dt {
+  color: var(--muted);
+}
+
+.kv dd {
+  margin: 0;
+  font-weight: 500;
+}
+
+.stack > * + * {
+  margin-top: 16px;
+}
+
+/* File: frontend/app/dashboard.css */
+/* END OF FILE */
