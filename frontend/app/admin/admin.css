@@ -1,0 +1,59 @@
+/* Project: Via Nostra */
+/* File: frontend/app/admin/admin.css
+   Purpose: A few extra styles for the staff console: monospace text, small notes,
+   rank checkboxes, two-column layouts and the ledger entry lists. */
+
+.mono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.85rem;
+}
+
+.meta {
+  margin: 0;
+  max-width: 320px;
+  overflow-wrap: anywhere;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.role-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 8px 16px;
+  margin: 12px 0 16px;
+}
+
+.split {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 20px;
+  align-items: start;
+}
+
+.entry-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 0.85rem;
+}
+
+.entry-list li {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.admin-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: flex-end;
+  margin-bottom: 20px;
+}
+
+.admin-filters .field {
+  margin: 0;
+}
+
+/* File: frontend/app/admin/admin.css */
+/* END OF FILE */

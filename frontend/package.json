@@ -10,7 +10,6 @@
     "typecheck": "tsc --noEmit"
   },
   "keywords": [],
-  "type": "commonjs",
   "private": "true",
   "dependencies": {
     "next": "^16.4.6",
