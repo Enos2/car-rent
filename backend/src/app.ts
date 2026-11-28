@@ -21,6 +21,9 @@ import { config } from './config.js';
 import { healthRoutes } from './health/routes.js';
 import { hubRoutes } from './hubs/routes.js';
 import { payoutRoutes } from './payouts/routes.js';
+import { postRoutes } from './posts/routes.js';
+import { reportRoutes } from './reports/routes.js';
+import { reviewRoutes } from './reviews/routes.js';
 import { verificationRoutes } from './verification/routes.js';
 
 export async function buildApp(): Promise<FastifyInstance> {
@@ -70,6 +73,9 @@ export async function buildApp(): Promise<FastifyInstance> {
   await app.register(bookingRoutes, { prefix: '/api/v1' });
   await app.register(adminBookingRoutes, { prefix: '/api/v1' });
   await app.register(payoutRoutes, { prefix: '/api/v1' });
+  await app.register(reviewRoutes, { prefix: '/api/v1' });
+  await app.register(reportRoutes, { prefix: '/api/v1' });
+  await app.register(postRoutes, { prefix: '/api/v1' });
 
   return app;
 }

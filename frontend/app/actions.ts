@@ -1,7 +1,8 @@
 // Project: Via Nostra
 // File: frontend/app/actions.ts
 // Purpose: The server-side logic behind the sign-up, login and logout forms. It talks
-//          to the backend and stores the login token in a secure cookie.
+//          to the backend and stores the login token in a secure cookie. Sign-up
+//          requires accepting the terms and conditions.
 
 'use server';
 
@@ -74,6 +75,13 @@ export async function registerAction(
       values,
     };
   }
+  if (formData.get('acceptTerms') !== 'on') {
+    return {
+      message: 'Please fix the highlighted fields.',
+      fieldErrors: { acceptTerms: 'You must accept the terms and conditions.' },
+      values,
+    };
+  }
 
   const result = await apiRequest<AuthResponse>('/auth/register', {
     method: 'POST',
@@ -83,6 +91,7 @@ export async function registerAction(
       fullName,
       accountType,
       roles,
+      acceptTerms: true,
       ...(accountType === 'company' ? { companyName } : {}),
     },
   });

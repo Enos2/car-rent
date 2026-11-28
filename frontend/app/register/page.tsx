@@ -1,7 +1,8 @@
 // Project: Via Nostra
 // File: frontend/app/register/page.tsx
 // Purpose: The sign-up page: a person chooses individual or company, whether they
-//          want to rent, list cars or both, and creates their account.
+//          want to rent, list cars or both, accepts the terms and conditions, and
+//          creates their account.
 
 'use client';
 
@@ -160,6 +161,30 @@ export default function RegisterPage() {
           </div>
           {state?.fieldErrors?.roles ? (
             <p className="field-error">Choose at least one option.</p>
+          ) : null}
+        </div>
+
+        <div className="field">
+          <label className="choice">
+            <input type="checkbox" name="acceptTerms" required />
+            <span>
+              I agree to the{' '}
+              <a href="/legal/terms" target="_blank" rel="noopener noreferrer">
+                Terms and Conditions
+              </a>
+              , the{' '}
+              <a href="/legal/rules" target="_blank" rel="noopener noreferrer">
+                Rental Rules
+              </a>{' '}
+              and the{' '}
+              <a href="/legal/privacy" target="_blank" rel="noopener noreferrer">
+                Privacy Policy
+              </a>
+              .
+            </span>
+          </label>
+          {state?.fieldErrors?.acceptTerms ? (
+            <p className="field-error">{state.fieldErrors.acceptTerms}</p>
           ) : null}
         </div>
 

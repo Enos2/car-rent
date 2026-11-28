@@ -15,6 +15,8 @@ const LINKS = [
   { href: '/admin/bookings', label: 'Bookings', permission: 'bookings.read' },
   { href: '/admin/payouts', label: 'Payouts', permission: 'finance.read' },
   { href: '/admin/finance', label: 'Finance', permission: 'finance.read' },
+  { href: '/admin/reports', label: 'Reports', permission: 'reports.review' },
+  { href: '/admin/posts', label: 'Blog', permission: 'content.manage' },
   { href: '/admin/users', label: 'Users', permission: 'users.read' },
   { href: '/admin/hubs', label: 'Hubs', permission: 'hubs.manage' },
   { href: '/admin/audit', label: 'Audit log', permission: 'audit.read' },

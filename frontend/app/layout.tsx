@@ -1,9 +1,10 @@
 // Project: Via Nostra
 // File: frontend/app/layout.tsx
 // Purpose: The frame around every page: page title settings, the styles, the header
-//          at the top and the footer at the bottom.
+//          at the top and the footer (with the blog and legal links) at the bottom.
 
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import type { ReactNode } from 'react';
 import Header from '@/components/Header';
 import './globals.css';
@@ -26,7 +27,18 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <Header />
         <main>{children}</main>
         <footer className="site-footer">
-          <div className="container">&copy; {new Date().getFullYear()} Via Nostra. Our road.</div>
+          <div
+            className="container"
+            style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', gap: 12 }}
+          >
+            <span>&copy; {new Date().getFullYear()} Via Nostra. Our road.</span>
+            <nav style={{ display: 'flex', flexWrap: 'wrap', gap: 16 }}>
+              <Link href="/blog">Blog</Link>
+              <Link href="/legal/terms">Terms</Link>
+              <Link href="/legal/rules">Rental rules</Link>
+              <Link href="/legal/privacy">Privacy</Link>
+            </nav>
+          </div>
         </footer>
       </body>
     </html>

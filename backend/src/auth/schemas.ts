@@ -1,7 +1,8 @@
 // Project: Via Nostra
 // File: backend/src/auth/schemas.ts
 // Purpose: Describes and validates what a person must send to sign up or log in.
-//          Staff roles can never be requested at sign-up.
+//          Staff roles can never be requested at sign-up, and the terms and
+//          conditions must be accepted.
 
 import { z } from 'zod';
 
@@ -21,6 +22,7 @@ export const registerSchema = z
     companyName: z.string().trim().min(1).max(255).optional(),
     // A person may be a renter, an owner, or both.
     roles: z.array(z.enum(['renter', 'owner'])).min(1).max(2),
+    acceptTerms: z.literal(true, 'You must accept the terms and conditions'),
   })
   .refine((data) => data.accountType !== 'company' || Boolean(data.companyName), {
     path: ['companyName'],

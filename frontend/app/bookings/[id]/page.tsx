@@ -2,30 +2,30 @@
 // File: frontend/app/bookings/[id]/page.tsx
 // Purpose: One booking: its status and timeline, the price, where to collect the
 //          car, and the buttons that fit the stage: pay, confirm that the car was
-//          received, or cancel. The renter's money is held until they confirm.
+//          received, cancel, or (after the return) rate the rental. The renter's
+//          money is held until they confirm.
 
 import Link from 'next/link';
-import { notFound, redirect } from 'next/navigation';
+import { notFound } from 'next/navigation';
 import {
   cancelBookingAction,
   confirmReceiptAction,
   payBookingAction,
 } from '@/app/booking-actions';
+import { submitReviewAction } from '@/app/trust-actions';
+import Flash from '@/components/Flash';
 import { apiRequest } from '@/lib/api';
 import {
   BOOKING_STATUS,
+  firstParam,
   formatDate,
   formatDateTime,
   formatMoney,
 } from '@/lib/format';
-import { getCurrentUser, getToken } from '@/lib/session';
+import type { SearchParams } from '@/lib/format';
+import { requireUser } from '@/lib/session';
+import type { PendingReview } from '@/lib/trust';
 import type { BookingResponse } from '@/lib/types';
-
-type SearchParams = Record<string, string | string[] | undefined>;
-
-function first(value: string | string[] | undefined): string {
-  return (Array.isArray(value) ? value[0] : value) ?? '';
-}
 
 export default async function BookingPage({
   params,
@@ -36,20 +36,13 @@ export default async function BookingPage({
 }) {
   const { id } = await params;
   const query = await searchParams;
-  const notice = first(query.notice);
-  const error = first(query.error);
+  const { token, user } = await requireUser();
 
-  const token = await getToken();
-  const user = await getCurrentUser();
-  if (!token || !user) {
-    redirect('/login');
-  }
-
-  const result = await apiRequest<BookingResponse>(`/bookings/${encodeURIComponent(id)}`, { token });
+  const [result, pending] = await Promise.all([
+    apiRequest<BookingResponse>(`/bookings/${encodeURIComponent(id)}`, { token }),
+    apiRequest<{ items: PendingReview[] }>('/reviews/pending', { token }),
+  ]);
   if (!result.ok) {
-    if (result.status === 401) {
-      redirect('/login');
-    }
     if (result.status === 0) {
       return (
         <div className="container page">
@@ -64,6 +57,13 @@ export default async function BookingPage({
   const isRenter = booking.renterId === user.id;
   const status = BOOKING_STATUS[booking.status];
   const total = booking.subtotalMinor + booking.depositMinor;
+  const canReview =
+    isRenter &&
+    booking.status === 'completed' &&
+    pending.ok &&
+    pending.data.items.some(
+      (entry) => entry.bookingId === booking.id && entry.direction === 'renter_to_owner',
+    );
 
   const steps: Array<{ label: string; at: string | null; done: boolean }> = [
     { label: 'Booking created', at: booking.createdAt, done: true },
@@ -103,8 +103,7 @@ export default async function BookingPage({
         <span className={status.badge}>{status.label}</span>
       </div>
 
-      {notice ? <div className="notice">{notice}</div> : null}
-      {error ? <div className="alert">{error}</div> : null}
+      <Flash notice={firstParam(query.notice)} error={firstParam(query.error)} />
 
       <div className="detail-layout">
         <div>
@@ -126,7 +125,7 @@ export default async function BookingPage({
           </div>
 
           {hub ? (
-            <div className="card">
+            <div className="card" style={{ marginBottom: 20 }}>
               <h3>Collect and return at</h3>
               <p>
                 <strong>{hub.name}</strong>
@@ -147,6 +146,31 @@ export default async function BookingPage({
               </p>
               <p className="hint">Bring your ID. Staff check it before handing over the car.</p>
             </div>
+          ) : null}
+
+          {canReview ? (
+            <form action={submitReviewAction} className="form-panel">
+              <h3>Rate your rental</h3>
+              <p className="hint">Your honest review helps other renters and the owner.</p>
+              <input type="hidden" name="bookingId" value={booking.id} />
+              <div className="field">
+                <label htmlFor="rating">Rating</label>
+                <select id="rating" name="rating" defaultValue="5">
+                  <option value="5">5 - Excellent</option>
+                  <option value="4">4 - Good</option>
+                  <option value="3">3 - Okay</option>
+                  <option value="2">2 - Poor</option>
+                  <option value="1">1 - Terrible</option>
+                </select>
+              </div>
+              <div className="field">
+                <label htmlFor="comment">Comment (optional)</label>
+                <textarea id="comment" name="comment" rows={3} maxLength={1000} />
+              </div>
+              <button type="submit" className="btn btn-primary">
+                Submit review
+              </button>
+            </form>
           ) : null}
         </div>
 
@@ -227,7 +251,8 @@ export default async function BookingPage({
                 <p className="hint">
                   Full refund more than 48 hours before pick-up. Closer to the date you get
                   your deposit and half the rental back. After the start date the rental is
-                  not refunded.
+                  not refunded.{' '}
+                  <Link href="/legal/rules">Read the rules</Link>
                 </p>
               ) : null}
               <form action={cancelBookingAction}>

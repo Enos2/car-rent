@@ -1,12 +1,13 @@
 // Project: Via Nostra
 // File: backend/src/auth/routes.ts
 // Purpose: The web addresses for signing up, logging in and viewing your own
-//          account: POST /auth/register, POST /auth/login and GET /auth/me. The
-//          account details include the person's permissions for the website menus.
+//          account: POST /auth/register, POST /auth/login and GET /auth/me. Sign-up
+//          records which version of the terms was accepted.
 
 import type { FastifyInstance } from 'fastify';
 import { config } from '../config.js';
 import { isUniqueViolation, sendValidationError } from '../http.js';
+import { recordTermsAcceptance } from '../legal/terms.js';
 import { createUser, findUserWithPasswordByEmail } from '../users/repository.js';
 import type { User } from '../users/repository.js';
 import { currentAccount, requireUser } from './guards.js';
@@ -61,6 +62,7 @@ export async function authRoutes(app: FastifyInstance): Promise<void> {
           companyName: input.accountType === 'company' ? (input.companyName ?? null) : null,
           roles: [...new Set(input.roles)],
         });
+        await recordTermsAcceptance(user.id);
         return reply.code(201).send(issueToken(app, user));
       } catch (error) {
         if (isUniqueViolation(error)) {
